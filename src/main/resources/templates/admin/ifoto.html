@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>testingPicture</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">The Roots of Nyabingi HC</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="btn p-2 text-dark" th:href="@{/admin/registerActivity}">Manage Activity</a>
+    <a class="p-2 text-dark" href="index.html">View Packages</a>
+    <a class="p-2 text-dark" href="#"></a>
+    <a class="p-2 text-dark" href="#">Pricing</a>
+  </nav>
+  <a class="btn btn-outline-primary" href="#">Sign up</a>
+</div>
+
+<div th:class="container">
+	<div th:object="${home}">
+		<h1 th:text="${home.name}" style="color:highlight;"></h1>
+		<img th:src="@{${'/img/home/'+ home.photo2}}" style="height: 300px; width: 500px"
+		alt="Image de Home">
+		
+		<!-- Slide show container -->
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymealeaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>activities</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">The Roots of Nyabingi Heritage Center</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="btn p-2 text-dark" th:href="@{/admin/registerActivity}">Manage Activity</a>
+    <a class="p-2 text-dark" th:href="@{/admin/registerHome}">Manage Houses</a>
+    <a class="p-2 text-dark" th:href="@{/admin/registerTent}">Manage Tents</a>
+    <a class="p-2 text-dark" th:href="@{/admin/registerPartner}">Manage Partner</a>
+    <a class="p-2 text-dark" th:href="@{/admin/viewPackages}">View Packages</a>
+    <a class="btn btn-outline-primary" th:href="@{/logout}">Logout</a>
+  </nav>
+</div>
+
+<div th:class="container">
+	<h3 style="color: highlight;text-align: center;">Management of Activities</h3>
+	
+	<!-- MESSAGES -->
+	
+	
+	
+	<button class="btn btn-success" data-toggle="modal" data-target="#saveA" type="button">New Activity</button>
+	<button class="btn btn-info" data-toggle="modal" data-target="#discount" type="button">New Discount</button>
+	<table border="1" class="table table-stripled table-responsiveness-md">
+		<thead>
+			<tr>
+				<th>Activity Name</th>
+				<th>Number of Content</th>
+				<th>More Action</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr th:each="activity: ${activities}">
+			<td th:text="${activity.name}"></td>
+			<td th:text="${activity.name}"></td>
+			<td>
+				<form><a type="submit" class="btn btn-primary btn-sm" th:href="@{/admin/activityContents/{id} 
+				(id=${activity.id})}">Contents</a>
+				<button class="btn btn-secondary btn-sm">Video</button>
+				</form>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	Welcome <span sec:authentication="name"></span>
+	<!-- SAVING ACTIVITY MODAL -->
+
+<div class="myForm">
+<form method="post" th:action="@{/admin/saveActivity}"
+th:object="${activity}" enctype="multipart/form-data">
+<div class="modal fade" role="dialog" id="saveA" tabindex="-1"
+aria-hidden="true" aria-labelledby="exampleModal">
+
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-tittle" id="examModal">Activity Details</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden>&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+			
+				<div class="form-group">
+					<label class="control-label" for="name">
+						Activity Name
+					</label>
+					<input th:field="*{name}" class="form-control" required="required" id="name">
+				</div>
+				
+				<div class="form-group">
+					<label for="file" class="control-label">
+						Activity Video
+					</label>
+					<input type="file" class="form-control" id="file" name="file" >
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+<!-- DISPLAYING AND CHANGING VIDEO MODAL -->
+
+<div class="myVideo">
+<form method="post" th:action="@{/admin/saveActivity}"
+th:object="${activity}" enctype="multipart/form-data">
+<div class="modal fade" role="dialog" id="saveA" tabindex="-1"
+aria-hidden="true" aria-labelledby="exampleModal">
+
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-tittle" id="examModal">Video</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden>&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+			
+				<div class="form-group">
+					<label class="control-label" for="name">
+						Activity Name
+					</label>
+					<input th:field="*{name}" class="form-control" required="required" id="name">
+				</div>
+				
+				<div class="form-group">
+					<label for="file" class="control-label">
+						Activity Video
+					</label>
+					<input type="file" class="form-control" id="file" name="file" >
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</div>
+
+</div>
+</form>
+</div>
+
+<div class="myForm">
+<form method="post" th:action="@{/admin/saveDiscount}"
+th:object="${discount}" enctype="multipart/form-data">
+<div class="modal fade" role="dialog" id="discount" tabindex="-1"
+aria-hidden="true" aria-labelledby="exampleModal">
+
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-tittle" id="examModal">Activity Details</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden>&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+			
+				<div class="form-group">
+					<label class="control-label" for="name">
+						Discount Name
+					</label>
+					<input th:field="*{name}" class="form-control" required="required" id="name">
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label" for="name">
+						Discount Percentage
+					</label>
+					<input th:field="*{percentage}" class="form-control" required="required" id="name">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+</div>
+</body>
+</html>

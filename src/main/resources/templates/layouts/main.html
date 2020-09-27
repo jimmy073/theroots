@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymealeaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>homepage</title>
+
+  <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">Decorator</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="btn p-2 text-dark" th:href="@{/admin/registerActivity}">Manage Activity</a>
+    <a class="p-2 text-dark" th:href="@{/admin/registerPartner}">Manage Partners</a>
+    <a class="btn p-2 text-dark" th:href="@{/admin/registerHome}">Manage Homes</a>
+    <a class="p-2 text-dark" th:href="@{/admin/registerTent}">Manage Tent</a>
+  </nav>
+  <a class="btn btn-outline-primary" th:href="@{/login}">Login</a>
+</div>
+
+<p>index</p>
+Welcome
+<span sec:authentication="principal.username"></span>
+
+<div layout-fragment="content"></div>
+
+<footer>
+	Copyright @Jimmy Schadrackson
+</footer>
+</body>
+</html>
